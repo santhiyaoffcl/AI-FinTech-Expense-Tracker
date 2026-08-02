@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { X, Receipt, Plus, Save } from 'lucide-react';
 import { Expense, EXPENSE_CATEGORIES, CategoryType } from '../types';
+import { motion, AnimatePresence } from 'motion/react';
 
 interface ExpenseModalProps {
   isOpen: boolean;
@@ -46,8 +47,6 @@ export const ExpenseModal: React.FC<ExpenseModalProps> = ({
     setError('');
   }, [initialData, isOpen]);
 
-  if (!isOpen) return null;
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
@@ -86,8 +85,21 @@ export const ExpenseModal: React.FC<ExpenseModalProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-xl animate-fadeIn">
-      <div className="bg-slate-900/90 border border-white/10 rounded-3xl w-full max-w-md shadow-2xl overflow-hidden text-slate-100 backdrop-blur-2xl">
+    <AnimatePresence>
+      {isOpen && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-xl"
+        >
+          <motion.div
+            initial={{ scale: 0.95, opacity: 0, y: 15 }}
+            animate={{ scale: 1, opacity: 1, y: 0 }}
+            exit={{ scale: 0.95, opacity: 0, y: 15 }}
+            transition={{ type: 'spring', duration: 0.3 }}
+            className="bg-slate-900/90 border border-white/10 rounded-3xl w-full max-w-md shadow-2xl overflow-hidden text-slate-100 backdrop-blur-2xl"
+          >
         {/* Header */}
         <div className="px-6 py-4 border-b border-white/10 flex items-center justify-between bg-white/5">
           <div className="flex items-center space-x-2.5">
@@ -206,7 +218,9 @@ export const ExpenseModal: React.FC<ExpenseModalProps> = ({
             </button>
           </div>
         </form>
-      </div>
-    </div>
+      </motion.div>
+    </motion.div>
+  )}
+</AnimatePresence>
   );
 };

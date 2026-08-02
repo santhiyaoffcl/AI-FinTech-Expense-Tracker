@@ -16,6 +16,7 @@ import { ExpenseModal } from './components/ExpenseModal';
 import { IncomeModal } from './components/IncomeModal';
 import { Expense, Income, CategoryType, IncomeSourceType } from './types';
 import api from './services/api';
+import { motion, AnimatePresence } from 'motion/react';
 
 const AppContent: React.FC = () => {
   const { user, token, loading } = useAuth();
@@ -130,36 +131,43 @@ const AppContent: React.FC = () => {
 
           {/* Main Content Viewport */}
           <main className="flex-1 p-4 sm:p-6 lg:p-8 overflow-y-auto min-w-0">
-            {activeTab === 'dashboard' && (
-              <DashboardPage
-                key={Date.now()}
-                onOpenExpenseModal={() => handleOpenExpenseModal()}
-                onOpenIncomeModal={() => handleOpenIncomeModal()}
-                setActiveTab={setActiveTab}
-              />
-            )}
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={activeTab}
+                initial={{ opacity: 0, y: 15 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -15 }}
+                transition={{ duration: 0.2, ease: 'easeOut' }}
+              >
+                {activeTab === 'dashboard' && (
+                  <DashboardPage
+                    onOpenExpenseModal={() => handleOpenExpenseModal()}
+                    onOpenIncomeModal={() => handleOpenIncomeModal()}
+                    setActiveTab={setActiveTab}
+                  />
+                )}
 
-            {activeTab === 'expenses' && (
-              <ExpensesPage
-                key={Date.now()}
-                onOpenExpenseModal={(exp) => handleOpenExpenseModal(exp)}
-              />
-            )}
+                {activeTab === 'expenses' && (
+                  <ExpensesPage
+                    onOpenExpenseModal={(exp) => handleOpenExpenseModal(exp)}
+                  />
+                )}
 
-            {activeTab === 'income' && (
-              <IncomePage
-                key={Date.now()}
-                onOpenIncomeModal={(inc) => handleOpenIncomeModal(inc)}
-              />
-            )}
+                {activeTab === 'income' && (
+                  <IncomePage
+                    onOpenIncomeModal={(inc) => handleOpenIncomeModal(inc)}
+                  />
+                )}
 
-            {activeTab === 'budget' && <BudgetPage key={Date.now()} />}
+                {activeTab === 'budget' && <BudgetPage />}
 
-            {activeTab === 'analytics' && <AnalyticsPage key={Date.now()} />}
+                {activeTab === 'analytics' && <AnalyticsPage />}
 
-            {activeTab === 'ai-insights' && <AIInsightsPage key={Date.now()} />}
+                {activeTab === 'ai-insights' && <AIInsightsPage />}
 
-            {activeTab === 'profile' && <ProfilePage key={Date.now()} />}
+                {activeTab === 'profile' && <ProfilePage />}
+              </motion.div>
+            </AnimatePresence>
           </main>
         </div>
 

@@ -11,6 +11,7 @@ import {
   Plus,
 } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
+import { motion } from 'motion/react';
 
 interface SidebarProps {
   activeTab: string;
@@ -49,26 +50,30 @@ export const Sidebar: React.FC<SidebarProps> = ({
       <div className="space-y-6">
         {/* Quick Add Mobile Actions */}
         <div className="md:hidden grid grid-cols-2 gap-2 pb-4 border-b border-white/10">
-          <button
+          <motion.button
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
             onClick={() => {
               onOpenExpenseModal();
               if (closeMobileMenu) closeMobileMenu();
             }}
-            className="flex items-center justify-center space-x-1 py-2 px-3 text-xs font-bold bg-pink-600 text-white rounded-xl shadow-sm"
+            className="flex items-center justify-center space-x-1 py-2 px-3 text-xs font-bold bg-pink-600 text-white rounded-xl shadow-sm cursor-pointer"
           >
             <Plus className="w-4 h-4" />
             <span>Expense</span>
-          </button>
-          <button
+          </motion.button>
+          <motion.button
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
             onClick={() => {
               onOpenIncomeModal();
               if (closeMobileMenu) closeMobileMenu();
             }}
-            className="flex items-center justify-center space-x-1 py-2 px-3 text-xs font-bold bg-white/10 text-slate-200 border border-white/10 rounded-xl shadow-sm"
+            className="flex items-center justify-center space-x-1 py-2 px-3 text-xs font-bold bg-white/10 text-slate-200 border border-white/10 rounded-xl shadow-sm cursor-pointer"
           >
             <Plus className="w-4 h-4 text-emerald-400" />
             <span>Income</span>
-          </button>
+          </motion.button>
         </div>
 
         <div>
@@ -80,11 +85,13 @@ export const Sidebar: React.FC<SidebarProps> = ({
               const Icon = item.icon;
               const isActive = activeTab === item.id;
               return (
-                <button
+                <motion.button
+                  whileHover={{ x: 3, scale: 1.01 }}
+                  whileTap={{ scale: 0.99 }}
                   key={item.id}
                   id={`nav-${item.id}`}
                   onClick={() => handleSelect(item.id)}
-                  className={`w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl text-xs transition-all ${
+                  className={`w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl text-xs transition-all cursor-pointer ${
                     isActive
                       ? 'bg-pink-500/20 text-pink-300 border border-pink-500/30 font-bold shadow-md shadow-pink-950/30'
                       : 'text-slate-400 font-medium hover:text-slate-100 hover:bg-white/5'
@@ -99,7 +106,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
                       {item.badge}
                     </span>
                   )}
-                </button>
+                </motion.button>
               );
             })}
           </nav>
@@ -117,13 +124,15 @@ export const Sidebar: React.FC<SidebarProps> = ({
           </p>
         </div>
 
-        <button
+        <motion.button
+          whileHover={{ scale: 1.02 }}
+          whileTap={{ scale: 0.98 }}
           onClick={logout}
-          className="w-full flex items-center space-x-3 px-3.5 py-2.5 rounded-2xl text-xs font-semibold text-rose-400 hover:bg-rose-500/10 border border-transparent transition-all"
+          className="w-full flex items-center space-x-3 px-3.5 py-2.5 rounded-2xl text-xs font-semibold text-rose-400 hover:bg-rose-500/10 border border-transparent transition-all cursor-pointer"
         >
           <LogOut className="w-4 h-4" />
           <span>Logout Account</span>
-        </button>
+        </motion.button>
       </div>
     </aside>
   );

@@ -5,6 +5,7 @@ import { FinancialSummary, Expense, Income } from '../types';
 import { StatCard } from '../components/StatCard';
 import { BudgetWarningBanner } from '../components/BudgetWarningBanner';
 import { TextType } from '../components/TextType';
+import { motion } from 'motion/react';
 import {
   TrendingUp,
   Receipt,
@@ -112,36 +113,82 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({
       )}
 
       {/* 4 Core Financial Metrics */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        <StatCard
-          title="Total Income"
-          value={summary?.totalIncome || 0}
-          icon={TrendingUp}
-          variant="emerald"
-          subtitle="Combined earnings"
-        />
-        <StatCard
-          title="Total Expenses"
-          value={summary?.totalExpense || 0}
-          icon={Receipt}
-          variant="rose"
-          subtitle="All recorded spending"
-        />
-        <StatCard
-          title="Current Balance"
-          value={summary?.remainingBalance || 0}
-          icon={Wallet}
-          variant="cyan"
-          subtitle="Available funds"
-        />
-        <StatCard
-          title="Net Savings"
-          value={summary?.savings || 0}
-          icon={PiggyBank}
-          variant="amber"
-          subtitle="Remaining positive balance"
-        />
-      </div>
+      <motion.div
+        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4"
+        initial="hidden"
+        animate="visible"
+        variants={{
+          visible: {
+            transition: {
+              staggerChildren: 0.08
+            }
+          }
+        }}
+      >
+        <motion.div
+          variants={{
+            hidden: { opacity: 0, y: 15 },
+            visible: { opacity: 1, y: 0 }
+          }}
+          transition={{ type: 'spring', stiffness: 100, damping: 15 }}
+        >
+          <StatCard
+            title="Total Income"
+            value={summary?.totalIncome || 0}
+            icon={TrendingUp}
+            variant="emerald"
+            subtitle="Combined earnings"
+          />
+        </motion.div>
+
+        <motion.div
+          variants={{
+            hidden: { opacity: 0, y: 15 },
+            visible: { opacity: 1, y: 0 }
+          }}
+          transition={{ type: 'spring', stiffness: 100, damping: 15 }}
+        >
+          <StatCard
+            title="Total Expenses"
+            value={summary?.totalExpense || 0}
+            icon={Receipt}
+            variant="rose"
+            subtitle="All recorded spending"
+          />
+        </motion.div>
+
+        <motion.div
+          variants={{
+            hidden: { opacity: 0, y: 15 },
+            visible: { opacity: 1, y: 0 }
+          }}
+          transition={{ type: 'spring', stiffness: 100, damping: 15 }}
+        >
+          <StatCard
+            title="Current Balance"
+            value={summary?.remainingBalance || 0}
+            icon={Wallet}
+            variant="cyan"
+            subtitle="Available funds"
+          />
+        </motion.div>
+
+        <motion.div
+          variants={{
+            hidden: { opacity: 0, y: 15 },
+            visible: { opacity: 1, y: 0 }
+          }}
+          transition={{ type: 'spring', stiffness: 100, damping: 15 }}
+        >
+          <StatCard
+            title="Net Savings"
+            value={summary?.savings || 0}
+            icon={PiggyBank}
+            variant="amber"
+            subtitle="Remaining positive balance"
+          />
+        </motion.div>
+      </motion.div>
 
       {/* Budget Warning / Health Banner */}
       {summary && (
