@@ -1,0 +1,6 @@
+{
+  "name": "AI FinTech Expense Tracker",
+  "description": "AI-Powered FinTech Expense Tracker with Smart Spending Insights, Budget Warnings, Analytics, and Gemini Financial AI.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

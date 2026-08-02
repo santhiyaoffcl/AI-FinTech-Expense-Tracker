@@ -1,0 +1,27 @@
+.text-type {
+  display: inline-flex;
+  align-items: baseline;
+  white-space: pre;
+}
+
+@keyframes textTypeCursorBlink {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+.text-type__cursor {
+  margin-left: 0.15rem;
+  display: inline-block;
+  vertical-align: baseline;
+  animation: textTypeCursorBlink 0.8s infinite ease-in-out;
+  line-height: 1;
+}
+
+.text-type__cursor--hidden {
+  display: none !important;
+}
+
