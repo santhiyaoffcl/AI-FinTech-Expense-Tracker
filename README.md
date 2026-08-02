@@ -10,7 +10,7 @@ A high-performance, interactive financial dashboard showcasing smart budgeting, 
   <img src="https://img.shields.io/badge/tailwind%20css-38bdf8?style=for-the-badge&logo=tailwindcss&logoColor=white" alt="Tailwind CSS" />
 </p>
 
-🔴 **[View Live Demo](https://github.com/santhiyaoffcl/AI-FinTech-Expense-Tracker)**
+🔴 **[View Live Demo](https://ai-fin-tech-expense-tracker.vercel.app/)**
 
 </div>
 
