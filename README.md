@@ -1,6 +1,18 @@
+<div align="center">
+
 # AI FinTech Expense Tracker
 
-An AI-powered, modern financial dashboard designed to track expenses, manage budgets, analyze income, and deliver personalized financial insights powered by Google Gemini.
+A high-performance, interactive financial dashboard showcasing smart budgeting, financial analytics, and Gemini-powered insights.
+
+<p align="center">
+  <img src="https://img.shields.io/badge/deployed%20on-vercel-000000?style=for-the-badge&logo=vercel&logoColor=white" alt="Deployed on Vercel" />
+  <img src="https://img.shields.io/badge/react%2019-20232a?style=for-the-badge&logo=react&logoColor=61dafb" alt="React 19" />
+  <img src="https://img.shields.io/badge/tailwind%20css-38bdf8?style=for-the-badge&logo=tailwindcss&logoColor=white" alt="Tailwind CSS" />
+</p>
+
+🔴 **[View Live Demo](https://github.com/santhiyaoffcl/AI-FinTech-Expense-Tracker)**
+
+</div>
 
 ---
 
